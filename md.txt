@@ -1,0 +1,98 @@
+> db.testemunho.find( {codigoBarra: /^FURB/}).count();
+7288
+> db.testemunho.find( {codigoBarra: /^FURB/}).count();
+7288
+> db.testemunho.find( {codigoBarra: /^FURB/}).count();
+7288
+> ^C
+bye
+postgres@jabot-acares:/home/kleyton$ mongo
+MongoDB shell version: 3.0.4
+connecting to: test
+Server has startup warnings: 
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] 
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] 
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-08-21T11:31:25.771-0300 I CONTROL  [initandlisten] 
+> use benchmark_mp
+switched to db benchmark_mp
+> db.testemunho.find( {codigoBarra: 'FURB03672'}).count();
+1
+> db.testemunho.find( {codigoBarra: 'FURB03672'}).count();
+1
+> db.testemunho.find( {codigoBarra: 'FURB03672'}).count();
+1
+> db.testemunho.find( {codigoBarra: /FURB/}).count();
+7288
+> db.testemunho.find( {codigoBarra: 'FURB03672'}).count();
+1
+> db.testemunho.find( {coleta: {{municipio: 'Nova Iguaçu'}}).count();
+... 
+... ^C
+
+> db.testemunho.find( {coleta: {municipio: 'Nova Iguaçu'}}).count();
+0
+> db.testemunho.find( { coleta.municipio: 'Nova Iguaçu'}).count();
+2015-08-24T18:15:19.819-0300 E QUERY    SyntaxError: Unexpected token .
+> db.testemunho.find( { 'coleta.municipio': 'Nova Iguaçu'}).count();
+1633
+> db.testemunho.find( { 'coleta.municipio': 'Nova Iguaçu'}).count();
+1633
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.name_cache': 'Machaerium aculeatum'}).count();
+105
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.name_cache': 'Machaerium aculeatum'}).count();
+105
+> db.testemunho.createIndex( { 'historico_determinacoes.taxon_name.name_cache': 1 } )
+;
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> ;
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.name_cache': 'Machaerium aculeatum'}).count();
+105
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.name_cache': 'Machaerium aculeatum'}).count();
+105
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.rank': 'ESPECIE'}).count();
+541028
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.rank': 'ESPECIE'}).count();
+541028
+> db.testemunho.createIndex( { 'historico_determinacoes.taxon_name.rank': 1 } )
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 2,
+	"numIndexesAfter" : 3,
+	"ok" : 1
+}
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.rank': 'ESPECIE'}).count();
+541028
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.rank': 'ESPECIE'}).count();
+541028
+> db.testemunho.find( { 'historico_determinacoes.taxon_name.rank': 'ESPECIE'}).count();
+541028
+> db.testemunho.delete()
+2015-08-24T19:40:25.288-0300 E QUERY    TypeError: Property 'delete' of object benchmark_mp.testemunho is not a function
+    at (shell):1:21
+> db.testemunho.delete;
+benchmark_mp.testemunho.delete
+> db.testemunho.DropCollection();
+2015-08-24T19:40:51.927-0300 E QUERY    TypeError: Property 'DropCollection' of object benchmark_mp.testemunho is not a function
+    at (shell):1:15
+> db.testemunho.dropCollection;
+benchmark_mp.testemunho.dropCollection
+> db.testemunho.dropCollection();
+2015-08-24T19:41:05.063-0300 E QUERY    TypeError: Property 'dropCollection' of object benchmark_mp.testemunho is not a function
+    at (shell):1:15
+> db.testemunho.remove();
+2015-08-24T19:41:35.780-0300 E QUERY    Error: remove needs a query
+    at Error (<anonymous>)
+    at DBCollection._parseRemove (src/mongo/shell/collection.js:305:32)
+    at DBCollection.remove (src/mongo/shell/collection.js:328:23)
+    at (shell):1:15 at src/mongo/shell/collection.js:305
+> 
+
